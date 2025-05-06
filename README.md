@@ -21,6 +21,11 @@ Cozy Kettle is a web app built with .NET 8 MVC that lets users browse coffee and
 ![Order Completion](Screenshots/The_Cozy_Kettle%20-%20Personal%20-%20Order%20Completion.png)
 
 
+## 🎥 Demo Video
+
+[![Watch the video](https://img.youtube.com/vi/Uu1ywc9769M/0.jpg)](https://youtu.be/Uu1ywc9769M)
+
+
 ## 🚀 Features
 
 - 👤 User registration, login, and authentication 
