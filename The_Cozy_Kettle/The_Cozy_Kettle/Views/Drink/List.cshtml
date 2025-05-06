@@ -1,0 +1,15 @@
+﻿@using The_Cozy_Kettle.ViewModels;
+@model DrinkListViewModel
+
+
+
+
+@{
+    
+   <div class="row">
+        @foreach (Drink drink in Model.Drinks)
+        {
+            @Html.Partial("DrinksSummary",drink);
+        }
+    </div>
+}

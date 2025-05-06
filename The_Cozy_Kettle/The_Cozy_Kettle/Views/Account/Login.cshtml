@@ -1,0 +1,133 @@
+﻿ @model The_Cozy_Kettle.ViewModels.LoginViewModel 
+
+<style>
+    body {
+        background-color: #f8f4e3; 
+        font-family: 'Arial', sans-serif;
+        color: #4e342e; 
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        margin-top: 50px;
+    }
+
+    .form-title {
+        font-family: 'Pacifico', cursive;
+        text-align: center;
+        font-size: 2rem;
+        color: #3e2723; 
+        font-weight: lighter;
+        margin-bottom: 20px;
+    }
+
+    .form-subtitle {
+        text-align: center;
+        font-size: 1.25rem;
+        color: #6d4c41; 
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #3e2723; 
+    }
+
+    .form-control {
+        border: 1px solid #d7ccc8; 
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+        .form-control:focus {
+            border-color: #6d4c41;
+            box-shadow: 0 0 5px rgba(109, 76, 65, 0.5);
+        }
+
+    .btn-coffee {
+        background-color: #6d4c41; 
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-coffee:hover {
+            background-color: #4e342e; 
+        }
+
+  
+
+    .loginForm {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .register-link {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+        .register-link a {
+            color: #6d4c41;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+            .register-link a:hover {
+                text-decoration: underline;
+            }
+    
+</style>
+
+
+<div class="container">
+    <div class="row loginForm">
+        <div class="col-md-6 offset-md-3">
+            <h3 class="form-title">Welcome back! 😊 <br /><br /> </h3>
+            <form asp-controller="Account" asp-action="Login" method="post">
+                @Html.AntiForgeryToken()
+                <h4 class="form-subtitle">Enter your details below</h4>
+                
+
+                <!-- Username Field -->
+                <div class="form-group">
+                    <label asp-for="UserName" class="form-label">Username</label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <input asp-for="Password" class="form-control" type="password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group text-center">
+                    <input type="submit" class="btn btn-coffee" value="Log in" />
+                </div>
+            </form>
+
+            <div class="register-link">
+                Not registered yet?
+                <a asp-controller="Account" asp-action="Register">Create an account</a>
+            </div>
+        </div>
+    </div>
+</div>

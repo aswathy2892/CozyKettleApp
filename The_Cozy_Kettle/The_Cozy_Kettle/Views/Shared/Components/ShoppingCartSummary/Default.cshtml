@@ -1,0 +1,20 @@
+﻿@model The_Cozy_Kettle.ViewModels.ShoppingCartViewModel
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+
+
+@if (Model.ShoppingCart.ShoppingCartItems.Count > 0)
+{
+   
+
+    <li>
+        <a asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="badge bg-secondary" id="cart-status">
+                @Model.ShoppingCart.ShoppingCartItems.Count
+            </span>
+        </a>
+    </li>
+}

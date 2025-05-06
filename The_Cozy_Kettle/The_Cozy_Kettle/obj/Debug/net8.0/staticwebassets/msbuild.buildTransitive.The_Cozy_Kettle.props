@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\The_Cozy_Kettle.props" />
+</Project>

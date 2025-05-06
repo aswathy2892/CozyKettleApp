@@ -1,0 +1,47 @@
+﻿@model The_Cozy_Kettle.Models.Drink
+
+<style>
+    .card-img-top {
+        height: 250px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .coffee-btn {
+        background-color: #6f4e37; 
+        color: white;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .coffee-btn:hover {
+            background-color: #5a3c2e; 
+            color: white;
+        }
+
+    .price {
+        font-size: 1.2em; 
+        font-weight: bold; 
+        color:black; 
+    }
+</style>
+
+<div class="col-sm-4 mb-4">
+    <div class="card h-100">
+        <img class="card-img-top" src="@Model.ImageThumbnailUrl" alt="@Model.Name" />
+        <div class="card-body">
+            <h5 class="card-title" style="color: #6f4e37;">@Model.Name</h5>
+            <p class="card-text">@Model.ShortDescription</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+            @* <small class="text-muted">@Model.Price.ToString("c")</small> *@
+            <span class="price">@Model.Price.ToString("c")</span>
+            <form asp-controller="ShoppingCart" asp-action="AddToShoppingCart" method="post" class="mb-0">
+                <input type="hidden" name="drinkId" value="@Model.DrinkId" />
+                <button type="submit" class="btn btn-sm coffee-btn">
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

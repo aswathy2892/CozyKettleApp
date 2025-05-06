@@ -1,0 +1,235 @@
+﻿@* @model The_Cozy_Kettle.ViewModels.ShoppingCartViewModel; *@
+
+
+
+@*     <style> *@
+
+@*     .btn-group { *@
+@*         display: flex; *@
+@*         justify-content: center; *@
+@*         gap: 15px;  *@
+@*     } *@
+
+@*     .text-center { *@
+@*         text-align: center;  *@
+@*     } *@
+
+@*     .btn-coffee { *@
+@*         background-color: #9E7A4F; *@
+@*         color: white; *@
+@*         border-radius: 5px; *@
+@*         padding: 10px 20px; *@
+@*         text-transform: uppercase; *@
+@*         font-weight: normal; *@
+@*     } *@
+
+@*         .btn-coffee:hover { *@
+@*             background-color: #5a3e1a; *@
+@*         } *@
+@*     </style> *@
+
+@* <div class="row checkoutForm"> *@
+  
+
+@*     <div class="text-center mb-4 p-4" style=" border-radius: 8px;"> *@
+@*         <h2 class="display-5" style="font-family: 'Lora', serif; color: #6F4F28; font-style:italic">Ready to check out your favorites?</h2> *@
+@*         <p class="lead text-muted" style="font-size: 1.2rem; font-family: 'Open Sans', sans-serif;">Here’s what’s in your cart.</p> *@
+@*     </div> *@
+
+@*     <table class="table table-bordered table-striped"> *@
+@*         <thead> *@
+@*             <tr> *@
+@*                 <th>Selected amount</th> *@
+@*                 <th>Drink</th> *@
+@*                 <th class="text-right">Price</th> *@
+@*                 <th class="text-right">Subtotal</th> *@
+@*                 <th></th> *@
+@*             </tr> *@
+@*         </thead> *@
+@*         <tbody> *@
+@*             @foreach (var line in Model.ShoppingCart.ShoppingCartItems) *@
+@*             { *@
+@*                 <tr> *@
+@*                     <td class="text-center">@line.Amount</td> *@
+@*                     <td class="text-left">@line.Drink.Name</td> *@
+@*                     <td class="text-right">@line.Drink.Price.ToString("c")</td> *@
+@*                     <td class="text-right"> *@
+@*                         @((line.Amount * line.Drink.Price).ToString("c")) *@
+@*                     </td> *@
+@*                     <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-drinkId="@line.Drink.DrinkId"></a></td> *@
+@*                 </tr> *@
+@*             } *@
+@*         </tbody> *@
+@*         <tfoot> *@
+@*             <tr> *@
+@*                 <td colspan="3" class="text-right">Total:</td> *@
+@*                 <td class="text-right"> *@
+@*                     @Model.ShoppingCartTotal.ToString("c"); *@
+@*                 </td> *@
+@*             </tr> *@
+@*         </tfoot> *@
+@*     </table> *@
+
+
+@*     <div class="text-center"> *@
+@*         <div class="btn-group"> *@
+@*             <!-- Check out Button --> *@
+@*             <a class="btn btn-coffee" asp-controller="Order" asp-action="Checkout"> *@
+@*                 Check out *@
+@*             </a> *@
+
+@*             <!-- Add more to Cart Button --> *@
+@*             <a class="btn btn-coffee" asp-controller="Drink" asp-action="List"> *@
+@*                 Add more to Cart *@
+@*             </a> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+
+
+@model The_Cozy_Kettle.ViewModels.ShoppingCartViewModel
+
+<style>
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .btn-coffee {
+        background-color: #9E7A4F;
+        color: white;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+
+        .btn-coffee:hover {
+            background-color: #5a3e1a;
+        }
+
+    .drink-image {
+        width: 50px;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+        .quantity-control form {
+            display: inline;
+        }
+
+    .quantity-number {
+        min-width: 30px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .btn-qty {
+        border: none;
+        background: #9E7A4F;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+    }
+
+        .btn-qty:hover {
+            background-color: #5a3e1a;
+        }
+</style>
+
+<div class="row checkoutForm">
+    <div class="text-center mb-4 p-4" style="border-radius: 8px;">
+        <h2 class="display-5" style="font-family: 'Lora', serif; color: #6F4F28; font-style: italic;">
+            Ready to check out your favorites?
+        </h2>
+        <p class="lead text-muted" style="font-size: 1.2rem; font-family: 'Open Sans', sans-serif;">
+            Here’s what’s in your cart.
+        </p>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Drink</th>
+                <th>Quantity</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <tr>
+                    
+
+                    <!-- Drink image + name -->
+                    <td class="text-left">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <img src="@line.Drink.ImageUrl" alt="@line.Drink.Name" class="drink-image" />
+                            <span>@line.Drink.Name</span>
+                        </div>
+                    </td>
+
+                    <!-- Quantity + / - controls -->
+                    <td class="text-center">
+                        <div class="quantity-control">
+                            <!-- Decrease -->
+                            <form asp-controller="ShoppingCart" asp-action="UpdateQuantity" method="post">
+                                <input type="hidden" name="DrinkId" value="@line.Drink.DrinkId" />
+                                <input type="hidden" name="Amount" value="@(line.Amount - 1)" />
+                                <button type="submit" class="btn-qty">−</button>
+                            </form>
+
+                            <span class="quantity-number">@line.Amount</span>
+
+                            <!-- Increase -->
+                            <form asp-controller="ShoppingCart" asp-action="UpdateQuantity" method="post">
+                                <input type="hidden" name="DrinkId" value="@line.Drink.DrinkId" />
+                                <input type="hidden" name="Amount" value="@(line.Amount + 1)" />
+                                <button type="submit" class="btn-qty">+</button>
+                            </form>
+                        </div>
+                    </td>
+
+
+                    <td class="text-right">@line.Drink.Price.ToString("c")</td>
+                    <td class="text-right">@((line.Amount * line.Drink.Price).ToString("c"))</td>
+
+                    <td class="text-center">
+                        <a class="glyphicon glyphicon-remove text-danger remove"
+                           asp-controller="ShoppingCart"
+                           asp-action="RemoveFromShoppingCart"
+                           asp-route-drinkId="@line.Drink.DrinkId"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total:</td>
+                <td class="text-right">@Model.ShoppingCartTotal.ToString("c")</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-center">
+        <div class="btn-group">
+            <a class="btn btn-coffee" asp-controller="Order" asp-action="Checkout">Check out</a>
+            <a class="btn btn-coffee" asp-controller="Drink" asp-action="List">Add more to Cart</a>
+        </div>
+    </div>
+</div>

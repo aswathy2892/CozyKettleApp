@@ -1,0 +1,25 @@
+﻿@model The_Cozy_Kettle.ViewModels.HomeViewModel
+
+@await Html.PartialAsync("Carousel")
+
+<style>
+    .cozy-subheading {
+        font-family: 'Georgia', serif;
+        font-size: 1.5rem;
+        color: #6b4f4f; 
+        font-style: italic;
+        text-align: center;
+        margin-bottom: 30px;
+        letter-spacing: 0.5px;
+    }
+</style>
+
+
+<h3 class="cozy-subheading mt-4">Curated just for your cozy moments ☕</h3>
+
+<div class="row">
+    @foreach(var drink in Model.PreferredDrinks)
+    {
+        @Html.Partial("DrinksSummary", drink)
+    }
+</div>

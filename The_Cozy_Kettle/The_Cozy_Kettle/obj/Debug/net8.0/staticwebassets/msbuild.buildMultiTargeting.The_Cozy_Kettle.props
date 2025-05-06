@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\The_Cozy_Kettle.props" />
+</Project>
