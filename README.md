@@ -46,3 +46,4 @@ GitHub: aswathy2892
 
 Email: aswathyasokan2892@gmail.com
 
+![The_Cozy_Kettle - HomePage](https://github.com/user-attachments/assets/dc935fae-625a-479a-bed3-67bb3936024e)
