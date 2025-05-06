@@ -1,6 +1,25 @@
 # CozyKettleApp
 Cozy Kettle is a web app built with .NET 8 MVC that lets users browse coffee and refreshers and place orders with ease. This repository contains the code for the website, offering a seamless and cozy ordering experience straight to your doorstep.
 
+## 📸 Screenshots
+
+### ☕ App Logo / Welcome Screen
+
+![The Cozy Kettle](Screenshots/TheCozyKettle.png)
+
+### 🏠 Home Page
+
+![Home Page](Screenshots/The_Cozy_Kettle%20-%20HomePage.png)
+
+### 🔐 Login Page
+![Login Page](Screenshots/The_Cozy_Kettle%20-%20Personal%20-%20Login%20Page.png)
+
+### 🛒 Checkout Page
+![Checkout Page](Screenshots/The_Cozy_Kettle%20-%20Personal%20-%20Checkout.png)
+
+### 🧾 Order Completion Page
+![Order Completion](Screenshots/The_Cozy_Kettle%20-%20Personal%20-%20Order%20Completion.png)
+
 
 ## 🚀 Features
 
